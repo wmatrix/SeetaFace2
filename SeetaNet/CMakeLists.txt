@@ -21,14 +21,14 @@ if(UNIX)
         set(CMAKE_CXX_FLAGS "-O2 ${CMAKE_CXX_FLAGS}")
     endif()
     if ("${PLATFORM}" STREQUAL "x86")
-        set(CMAKE_C_FLAGS "-m32  -msse2 -mfma ${CMAKE_C_FLAGS}")
-        set(CMAKE_CXX_FLAGS "-m32 -msse2 -mfma ${CMAKE_CXX_FLAGS}")
+        set(CMAKE_C_FLAGS "-m32  -msse2 ${CMAKE_C_FLAGS}")
+        set(CMAKE_CXX_FLAGS "-m32 -msse2 ${CMAKE_CXX_FLAGS}")
     elseif ("${PLATFORM}" STREQUAL "x64")
-        set(CMAKE_C_FLAGS "-m64  -msse2 -mfma ${CMAKE_C_FLAGS}")
-        set(CMAKE_CXX_FLAGS "-m64 -msse2 -mfma ${CMAKE_CXX_FLAGS}")
+        set(CMAKE_C_FLAGS "-m64  -msse2 ${CMAKE_C_FLAGS}")
+        set(CMAKE_CXX_FLAGS "-m64 -msse2 ${CMAKE_CXX_FLAGS}")
     elseif ("${PLATFORM}" STREQUAL "x86_64")
-        set(CMAKE_C_FLAGS "-m64  -msse2 -mfma ${CMAKE_C_FLAGS}")
-        set(CMAKE_CXX_FLAGS "-m64 -msse2 -mfma ${CMAKE_CXX_FLAGS}")
+        set(CMAKE_C_FLAGS "-m64  -msse2 ${CMAKE_C_FLAGS}")
+        set(CMAKE_CXX_FLAGS "-m64 -msse2 ${CMAKE_CXX_FLAGS}")
     else()
         # set(CMAKE_C_FLAGS "-m64 -msse2 -mfma ${CMAKE_C_FLAGS}")
         # set(CMAKE_CXX_FLAGS "-m64 -msse2 -mfma ${CMAKE_CXX_FLAGS}")
@@ -55,7 +55,7 @@ FILE(GLOB_RECURSE SRC_INCLUDE_FILES
         )
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
-    
+
 # for compile
 add_library(${PROJECT_NAME} ${SRC_FILES})
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -77,8 +77,8 @@ set_property(
 )
 
 # link library
-if (UNIX) 
-    target_link_libraries(${PROJECT_NAME} -lpthread)   
+if (UNIX)
+    target_link_libraries(${PROJECT_NAME} -lpthread)
 endif()
 
 INSTALL(TARGETS ${PROJECT_NAME}
